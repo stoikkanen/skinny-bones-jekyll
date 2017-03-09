@@ -1,64 +1,232 @@
 # Site wide configuration
+# Site wide configuration
+source                   : .tmp/src
+destination              : .tmp/dist
 
-title: "Salla Eliisa Toikkanen"
-description: "This is a description of my awesome shite."
-logo: # 120x120 px default image used for Twitter summary card
-teaser: # 400x250 px default teaser image used in image archive grid
-locale: en
-url:
-feed:
-  path: atom.xml
+title                    : "Salla Eliisa Toikkanen"
+description              : "Personal website of mine"
+logo                     : #/assets/images/site-logo.png
+teaser                   : #/assets/images/default-teaser.png
+locale                   : "en_US"
+words_per_minute         : 200
+title_separator          : "×"
+
+repository               : ##
+url                      : "https://stoikkanen.github.io/"
+
+twitter:
+  username               : ##
+
+social:
+  name                   : "Salla Eliisa Toikkanen"
+  links:
+   # - ""
+    
+# Site owner
+author:
+  name                   : "Salla Toikkanen"
+  url                    : "https://stoikkanen.github.io/"
+  bio                    : "memememem"
+  picture                : "neiti_toikkanen.png"
+  
 
 # Jekyll configuration
-
-sass:
-  sass_dir: _sass
-  style: compressed
-permalink: /:categories/:title/
+permalink                : /:categories/:title/
+lsi                      : false
+future                   : false
+show_drafts              : false
+markdown                 : kramdown
 kramdown:
-  toc_levels: 1..2
-highlighter: rouge
-gems:
-  - jekyll-sitemap
-  - jekyll-gist
-  - jekyll-feed
-
-
-# Site owner
-owner:
-  name: Salla
-  email:
-  twitter:
-  google:
-    ad-client:
-    ad-slot:
-  bio: Olen kolmekymmentäyksivuotias
-  avatar: neiti_toikkanen.png #  image
-  disqus-shortname:
-
-
+  toc_levels             : 1..3
+  input                  : GFM
+  hard_wrap              : false
+  auto_ids               : true
+  entity_output          : as_char
+  smart_quotes           : lsquo,rsquo,ldquo,rdquo
+  enable_coderay         : false
+highlighter              : rouge
+keep_files:
+  - .git
 include:
   - .htaccess
+  - _pages
 exclude:
-  - "*.less"
   - "*.sublime-project"
   - "*.sublime-workspace"
   - .asset-cache
   - .bundle
   - .jekyll-assets-cache
   - .sass-cache
-  - CHANGELOG
   - Capfile
+  - config
   - Gemfile
   - Gruntfile.js
-  - LICENSE
-  - README
-  - Rakefile
-  - config
-  - gulpfile.js
-  - lib
   - log
   - node_modules
   - package.json
-  - spec
+  - Rakefile
+  - README
   - tmp
+
+# Plugins
+gems:
+  - jekyll-sitemap
+  - jemoji
+  - jekyll-seo-tag
+  - jekyll-paginate-v2
+
+# Collections
+collections:
+  faqs:
+    output    : true
+    permalink : /:collection/:path/
+    title     : FAQs
+  work:
+    output    : true
+    permalink : /:collection/:path/
+    title     : Work
+  components:
+    output    : false
+  colors:
+    output    : false
+
+# Front Matter Defaults
+defaults:
+  # Blog Articles
+  - scope:
+      path: _posts/articles
+      type: posts
+    values:
+      layout: page
+      category: articles
+      read_time: true
+      breadcrumbs:
+        - label: "Blog Articles"
+          url: /articles/
+  # Mastering Paper
+  - scope:
+      path: _posts/mastering-paper
+      type: posts
+    values:
+      layout: page
+      category: mastering-paper
+      read_time: true
+      comments: true
+      breadcrumbs:
+        - label: "Mastering Paper by 53"
+          url: /mastering-paper/
+  # PaperFaces
+  - scope:
+      path: _posts/paperfaces
+      type: posts
+    values:
+      layout: work
+      category: paperfaces
+      breadcrumbs:
+        - label: "PaperFaces Portraits"
+          url: /paperfaces/
+      work: "Illustration"
+      seo:
+        type: "CreativeWork"
+  # Procreate Paintings
+  - scope:
+      path: _posts/procreate
+      type: posts
+    values:
+      layout: work
+      category: procreate-paintings
+      breadcrumbs:
+        - label: "Procreate Paintings"
+          url: /procreate-paintings/
+      work: "Illustration"
+      seo:
+        type: "CreativeWork"
+  # TIL
+  - scope:
+      path: _posts/til
+      type: posts
+    values:
+      layout: page
+      category: til
+      read_time: true
+      comments: true
+      breadcrumbs:
+        - label: "Today I Learned"
+          url: /til/
+  # Tiny Paintings
+  - scope:
+      path: _posts/tiny-paintings
+      type: posts
+    values:
+      layout: work
+      category: tiny-paintings
+      breadcrumbs:
+        - label: "Tiny Paintings"
+          url: /tiny-paintings/
+      work: "Illustration"
+      seo:
+        type: "CreativeWork"
+  # Work (posts and collection)
+  - scope:
+      path: _posts/work
+      type: posts
+    values:
+      layout: work
+      category: work
+      breadcrumbs:
+        - label: "Work"
+          url: /work/
+      seo:
+        type: "CreativeWork"
+  - scope:
+      path: _work
+      type: work
+    values:
+      layout: work
+      category: work
+      breadcrumbs:
+        - label: "Work"
+          url: /work/
+      seo:
+        type: "CreativeWork"
+  # FAQs
+  - scope:
+      path: _faqs
+      type: faqs
+    values:
+      layout: page
+      read_time: true
+      breadcrumbs:
+        - label: "Frequently Asked Questions"
+          url: /faqs/
+  # Pages
+  - scope:
+      path: _pages
+      type: pages
+    values:
+      layout: page
+
+# Plugin: Pagination (jekyll-paginate-v2)
+pagination:
+  enabled      : true
+  debug        : false
+  per_page     : 15
+  permalink    : "/page/:num/"
+  title        : ":title - Page :num of :max"
+  limit        : 0
+  sort_field   : "date"
+  sort_reverse : true
+
+# Plugin: Auto Pages (jekyll-paginate-v2)
+autopages:
+  enabled      : true
+  categories:
+    enabled    : false
+  collections:
+    enabled    : false
+  tags:
+    enabled    : true
+    layouts:
+      - "autopage_tags.html"
+    title      : ":tag" # :tag is replaced by the tag name
+    permalink  : "/tag/:tag"
