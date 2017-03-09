@@ -4,7 +4,7 @@ source                   : .tmp/src
 destination              : .tmp/dist
 
 title                    : "Salla Eliisa Toikkanen"
-description              : "Personal website of mine"
+description              : "Personal website of mine!"
 logo                     : #/assets/images/site-logo.png
 teaser                   : #/assets/images/default-teaser.png
 locale                   : "en_US"
